@@ -13,13 +13,13 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.username || !formData.password || !formData.email) {
+    if (!formData.password || !formData.email) {
       return setErrorMessage("please fill out all the fields");
     }
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await fetch("/api/auth/signup", {
+      const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,7 +32,7 @@ const SignIn = () => {
       }
       setLoading(false);
       if (res.ok) {
-        navigate("/sign-in");
+        navigate("/");
       }
     } catch (error) {
       setErrorMessage(error.message);
@@ -50,7 +50,7 @@ const SignIn = () => {
             Blog
           </Link>
           <p className="text-sm mt-5">
-            This is a Blog Website. Feel free to use it!!. You can signup with
+            This is a Blog Website. Feel free to use it!!. You can signin with
             Email and password or with Google.
           </p>
         </div>
